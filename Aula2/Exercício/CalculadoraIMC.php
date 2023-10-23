@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +20,29 @@
     if(!empty($_POST)){
 
         $peso = $_POST["peso"];
-        $altura = $_POST["altura"];
-        $imc = $peso / ($altura * $altura);
+        $altura = $_POST["altura"] /100;
 
-        if($imc <= 16.9){
-            print "Você está muito abaixo do peso.";
+        $imc = $peso / ($altura * $altura);
+        $imcnovo = number_format($imc, 2);
+        print "Seu IMC $imcnovo" . PHP_EOL;
+
+        if($imcnovo <= 18.5){
+            print "Magreza.";
+        }
+        elseif($imcnovo <= 24.9) {
+            print "Normal.";
+        }
+        elseif($imcnovo <= 29.9) {
+            print "Sobrepeso.";
+        }
+        elseif($imcnovo <= 34.9) {
+            print "Obesidade grau I";
+        }
+        elseif($imcnovo <= 39.9) {
+            print "Obesidade grau iI.";
+        }
+        elseif($imcnovo > 40) {
+            print "Obesidade grau III.";
         }
     }
     ?>
